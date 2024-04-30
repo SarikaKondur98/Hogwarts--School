@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom';
+import { useContext } from 'react';
+import { WizardContext } from './context/Medium';
 import './App.css';
+import { Red } from './components/Houses/Gryffindor/Gryffindor';
+import { Home } from './components/Houses/SortingCermony';
+import { GreatHall } from './components/GreatHall/GreatHall';
 
 function App() {
+  const wizardState = useContext(WizardContext)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div className='App'>
+    <GreatHall/>
+    <Routes>
+      <Route path='/home' element={<Home sendWizards={wizardState.wizards}/>}/>
+      <Route path='/gryffindor' element={<Red/>}/>
+    </Routes>
     </div>
+    </>
   );
 }
 
